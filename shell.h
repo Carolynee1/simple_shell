@@ -18,7 +18,7 @@
 #define BUF_FLUSH -1
 
 /* for command chaining */
-#define CMD_NORM0
+#define CMD_NORM	0
 #define CMD_OR		1
 #define CMD_AND		2
 #define CMD_CHAIN	3
@@ -32,7 +32,7 @@
 #define USE_STRTOK 0
 
 #define HIST_FILE ".my_simple_shell-history"
-#define HIST_MAX   4096
+#define HIST_MAX   4096\
 
 extern char **environ;
 
@@ -49,8 +49,9 @@ typedef struct liststr
 	struct liststr *next;
 }
 list_t;
+
 /**
- * struct passinfo -contains pseudo-arguments to pass into a function.
+ * struct passinfo - contains pseudo-arguments to pass into a function.
  * @arg: a string generated from getline containing arguments
  * @agrv: an array of strings generated from arg
  * @path: a string path for the current command
@@ -85,27 +86,23 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
-	char **cmd_buf;/*pointer to cmd: chain buffer for memmory management */
+char **cmd_buf;/*pointer to cmd: chain buffer for memmory management*/
 	int cmd_buf_type; /* CMD_type ||, &&, */
 	int readfd;
 	int hiscount;
-}
-info_t;
+}info_t;
+#define INFO_INIT \{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\ 0, 0, 0}
 
-#define INFO_INIT\
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
-	0, 0, 0}
 /**
- * struct builtin -contains a builtin string and related function
+ * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
  * @func: the function
  */
 typedef struct builtin
 {
 	char *type;
-	int (*func)(info_t*);
-}
-builtin_table;
+	int (*func)(info_t *);
+}builtin_table;
 
 /* Caro&Josh_shloop.c */ 
 /*These function declaration are part of the shloop.c file, they are related to the main loop and execution of commands in the shell */
@@ -200,7 +197,7 @@ void sigintHandler(int);
 
 /* Caro&Josh_getinfo.c
  * this involves managing and manipulating the 'info_t' structure, which stores information about the shell.*/
-void clear_info(info_t *);
+void init_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
@@ -247,7 +244,7 @@ ssize_t get_node_index(list_t *,list_t *);
 /* Caro&Josh_vars.c
  * This is for handling variable substitution and string replacement.*/
 int is_chain(info_t *, char *, size_t *);
-void check_chain(Info_t *, char *, size_t *, size_t, size_t);
+void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);

@@ -18,7 +18,7 @@ char *_strncpy(char *dest, char *src, int n)
 	for (; i < n; i++)
 		dest[i] = '\0';
 
-	return dest;
+	return (dest);
 }
 /**
  * _strncat - Concatenates two strings
@@ -26,18 +26,19 @@ char *_strncpy(char *dest, char *src, int n)
  * @src: The second string
  * @n: The maximum number of characters to be used
  *
- * Return: A pointer to the concatenated string 
+ * Return: A pointer to the concatenated string
  */
 char *_strncat(char *dest, char *src, int n)
 {
 	int dest_len = _strlen(dest);
 	int i;
 
-	for (i =0; src[i] != '\0' && i < n; i++);
+	for (i = 0; src[i] != '\0' && i < n; i++)
 		dest[dest_len + i] = src[i];
+
 	if (i < n)
 		dest[dest_len + i] = '\0';
-	return dest;
+	return (dest);
 }
 
 /**
@@ -46,15 +47,15 @@ char *_strncat(char *dest, char *src, int n)
  * @c: The character to look for
  *
  * Return: A pointer to the first occurrence of the character,
- * 	or NULL if the character is not found
+ *	or NULL if the character is not found
  */
 char *_strchr(char *s, char c)
 {
 	while (*s != '\0')
 	{
 		if (*s == c)
-			return s;
+			return (s);
 		s++;
 	}
-	return NULL;
+	return (NULL);
 }
