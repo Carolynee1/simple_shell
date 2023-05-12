@@ -1,2 +1,1 @@
-Simle shell program By Caro and co LTD.
-She no gree borrow me loan, but their is God.
+Simle shell program By Caro and joshua

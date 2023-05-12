@@ -1,10 +1,12 @@
-#include "header.h"
+#include "shell.h"
 
-/*
- * main: Caro simple shell.c
- * Author: Caro
- * Description: A simple shell program in C
- */
+/**
+ * main - Caro simple shell
+ * Description: Simple shell v1 by Caro and co
+ *
+ * Return: Alway 0.
+ *
+ **/
 
 int main(void)
 {
