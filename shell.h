@@ -213,8 +213,8 @@ int populate_env_list(info_t *);
 /* Caro&Josh_getenv.c
  * this provides additional funcions for managing environment variables*/
 char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char*);
+int _unset_env_var(info_t *, char *);
+int _set_env_var(info_t *, char *, char *);
 
 /* Caro&Josh_history.c
  * this handles the history feature of the shell,
