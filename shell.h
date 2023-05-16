@@ -36,6 +36,7 @@
 
 extern char **environ;
 
+
 /**
  * struct liststr -singly linked list
  * @num: the number field
@@ -53,6 +54,7 @@ list_t;
  * struct passinfo -contains pseudo-arguments to pass into a function.
  * @arg: a string generated from getline containing arguments
  * @agrv: an array of strings generated from arg
+ * @args: a character array
  * @path: a string path for the current command
  * @argc: The argument count
  * @line_count: the error count
@@ -92,7 +94,7 @@ typedef struct passinfo
 }
 info_t;
 
-#define INFO_INIT\
+#define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
 	0, 0, 0}
 /**
@@ -106,6 +108,8 @@ typedef struct builtin
 	int (*func)(info_t*);
 }
 builtin_table;
+
+#define MAX_LENGTH 100 /* Or any other suitable value */
 
 /* Caro&Josh_shloop.c */ 
 /*These function declaration are part of the shloop.c file, they are related to the main loop and execution of commands in the shell */
@@ -247,7 +251,7 @@ ssize_t get_node_index(list_t *,list_t *);
 /* Caro&Josh_vars.c
  * This is for handling variable substitution and string replacement.*/
 int is_chain(info_t *, char *, size_t *);
-void check_chain(Info_t *, char *, size_t *, size_t, size_t);
+void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
