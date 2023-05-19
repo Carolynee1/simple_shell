@@ -120,7 +120,7 @@ void sigintHandler(int sig_num)
  * @ptr: Pointer to the buffer
  * @length: Pointer to the length of the buffer
  *
- * Return: The length of th line
+ * Return: The length of the line
  */
 int _getline(info_t *info, char **ptr, size_t *length)
 {

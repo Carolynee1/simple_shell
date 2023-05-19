@@ -91,7 +91,7 @@ char **cmd_buf;/*pointer to cmd: chain buffer for memmory management*/
 	int readfd;
 	int histcount;
 }info_t;
-#define INFO_INIT\ {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
+#define INFO_INIT \ {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
 
 /**
  * struct builtin - contains a builtin string and related function
@@ -180,14 +180,18 @@ void remove_comments(char *);
 
 /* Caro&Josh_builtin.c
  * this is for the built-in shell commands.*/
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int custom_exit(info_t *);
+int custom_cd(info_t *);
+int custom_help(info_t *);
 
 /* Caro&Josh_builtin1.c
  * these are additional functions for the built-in shell commands*/
 int _myhistory(info_t *);
 int _myalias(info_t *);
+int unset_alias(info_t *, char *);
+int set_alias(info_t *, char *);
+int print_alias(list_t *);
+int find_builtin(info_t *);
 
 /* Caro&Josh_getline.c
  * this handles reading user input from the command line*/
