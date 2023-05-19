@@ -36,6 +36,7 @@
 
 extern char **environ;
 
+
 /**
  * struct liststr -singly linked list
  * @num: the number field
@@ -54,6 +55,7 @@ list_t;
  * struct passinfo - contains pseudo-arguments to pass into a function.
  * @arg: a string generated from getline containing arguments
  * @agrv: an array of strings generated from arg
+ * @args: a character array
  * @path: a string path for the current command
  * @argc: The argument count
  * @line_count: the error count
@@ -76,6 +78,7 @@ typedef struct passinfo
 	char **argv;
 	char *path;
 	int argc;
+	int builtin_table;
 	unsigned int line_count;
 	int err_num;
 	int line_count_flag;
@@ -93,6 +96,15 @@ char **cmd_buf;/*pointer to cmd: chain buffer for memmory management*/
 }info_t;
 #define INFO_INIT \ {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
+	0, 0, 0}
+=======
+>>>>>>> 1e538c36ddbc4661011d9e52b01a2f341bc41562
+>>>>>>> 24dd7dc126a721ec8012c9122c3c810afbad57b5
 /**
  * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
@@ -103,6 +115,8 @@ typedef struct builtin
 	char *type;
 	int (*func)(info_t *);
 }builtin_table;
+
+#define MAX_LENGTH 100 /* Or any other suitable value */
 
 /* Caro&Josh_shloop.c */ 
 /*These function declaration are part of the shloop.c file, they are related to the main loop and execution of commands in the shell */
