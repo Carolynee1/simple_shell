@@ -96,12 +96,6 @@ char **cmd_buf;/*pointer to cmd: chain buffer for memmory management*/
 }info_t;
 #define INFO_INIT \ {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
 
-<<<<<<< HEAD
-#define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
-	0, 0, 0}
-=======
->>>>>>> 1e538c36ddbc4661011d9e52b01a2f341bc41562
 /**
  * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
