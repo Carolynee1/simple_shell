@@ -1,4 +1,4 @@
-#include "shell.h"
+nclude "shell.h"
 /**
  * get_environ - returns a copy of the string array of environment variables
  * @info: structure containing relevant information
@@ -45,8 +45,8 @@ int _unset_env_var(info_t *info, char *var)
 }
 
 /**
- * _set_env_var - initializes a new environment variable or
- *	modifies an existing one
+ * _set_env_var - initializes a new environment variable
+ * or modifies an existing one
  * @info: Structure containing relevant information
  * @var: The name of the environment variable
  * @value: The value of the environment variable
