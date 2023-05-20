@@ -1,4 +1,4 @@
-nclude "shell.h"
+#include "shell.h"
 /**
  * get_environ - returns a copy of the string array of environment variables
  * @info: structure containing relevant information
