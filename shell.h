@@ -97,11 +97,17 @@ char **cmd_buf;/*pointer to cmd: chain buffer for memmory management*/
 #define INFO_INIT \ {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
 	0, 0, 0}
 =======
 >>>>>>> 1e538c36ddbc4661011d9e52b01a2f341bc41562
+>>>>>>> 24dd7dc126a721ec8012c9122c3c810afbad57b5
+=======
+>>>>>>> 358383638b2fa2709a1e3f72001cd51fcb5c6cf0
 /**
  * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
@@ -191,14 +197,18 @@ void remove_comments(char *);
 
 /* Caro&Josh_builtin.c
  * this is for the built-in shell commands.*/
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int custom_exit(info_t *);
+int custom_cd(info_t *);
+int custom_help(info_t *);
 
 /* Caro&Josh_builtin1.c
  * these are additional functions for the built-in shell commands*/
 int _myhistory(info_t *);
 int _myalias(info_t *);
+int unset_alias(info_t *, char *);
+int set_alias(info_t *, char *);
+int print_alias(list_t *);
+int find_builtin(info_t *);
 
 /* Caro&Josh_getline.c
  * this handles reading user input from the command line*/
