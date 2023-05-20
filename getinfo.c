@@ -23,7 +23,7 @@ void init_info(info_t *info)
 	info->cmd_buf = NULL;
 	info->cmd_buf_type = CMD_NORM;
 	info->readfd = STDIN_FILENO;
-	info->hiscount = 1;
+	info->histcount = 1;
 
 }
 /**

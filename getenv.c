@@ -70,7 +70,7 @@ int _set_env_var(info_t *info, char *var, char *value)
 	_strcat(buf, value);
 
 	node = info->env;
-	while (noe)
+	while (node)
 	{
 		equal_sign = starts_with(node->str, var);
 		if (equal_sign && *equal_sign == '=')
