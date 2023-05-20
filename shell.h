@@ -230,6 +230,19 @@ int _set_env_var(info_t *, char *, char *);
 /* Caro&Josh_history.c
  * this handles the history feature of the shell,
  * and allows storing and retrieving previously executed commands*/
+
+#ifndef HISTORY_H
+#define HISTORY_H
+
+#define MAX_HISTORY_SIZE 100
+#define MAX_COMMAND_LENGTH 200
+
+typedef struct
+{
+	char history[MAX_HISTORY_SIZE][MAX_COMMAND_LENGTH];
+	int count;
+} History;
+
 char *get_history_fil(info_t *info);
 int write_history(info_t *info);
 int read_history(info_t *info);
