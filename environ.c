@@ -1,73 +1,83 @@
 #include "shell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * get_environ - Get the environment variables
- * @info: Pointer to the info_t structure
+ * _getenv - Get value of an environment variable
+ * @info: Pointer to info_t struct
+ * @name: Name of the environment variable
  *
- * Return: Pointer to the array of environment variables
+ * Return: Pointer to the value of the environment variable
  */
-char **get_environ(info_t *info)
+char *_getenv(info_t *info, const char *name)
 {
-	/* Function implementation */
-	char **environ_vars = NULL;
+	/* Code to get value of an environment variable */
 
-	/* Implementation logic */
-
-	return (environ_vars);
+	return (getenv(name));
 }
 
 /**
- * _unset_env_var - Unset an environment variable
- * @info: Pointer to the info_t structure
- * @var_name: Name of the environment variable to unset
+ *_myenv - Display all environment variables
+ * @info: Pointer to info_t struct
  *
- * Return: Status code
+ * Return: 0 on success, -1 on failure
  */
-int _unset_env_var(info_t *info, char *var_name)
+int _myenv(info_t *info)
 {
-	/* Function implementation */
-	int status = 0;
+	char **env = info->environ;
 
-	/* Implementation logic */
+	while (*env != NULL)
+	{
+		printf("%s\n", *env);
+		env++;
+	}
 
-	return (status);
+	return (0); /* or -1 on failure */
 }
 
 /**
- * _set_env_var - Set an environment variable
- * @info: Pointer to the info_t structure
- * @var_name: Name of the environment variable to set
- * @var_value: Value to assign to the environment variable
+ *_mysetenv - Set the value of an environment variable
+ * @info: Pointer to info_t struct
  *
- * Return: Status code
+ * Return: 0 on success, -1 on failure
  */
-int _set_env_var(info_t *info, char *var_name, char *var_value)
+int _mysetenv(info_t *info)
 {
-	/* Function implementation */
-	int status = 0;
+	/* Code to set the value of an environment variable */
 
-	/* Implementation logic */
-
-	return (status);
+	return (setenv(name, value, overwrite));
 }
 
 /**
- * main - Entry point of the program
+ * _myunsetenv - Unset an environment variable
+ * @info: Pointer to info_t struct
  *
- * Return: Always 0 (Success)
+ * Return: 0 on success, -1 on failure
  */
-int main(void)
+int _myunsetenv(info_t *info)
 {
-	info_t info; /* Create an instance of info_t structure */
+	/* Code to unset an environment variable */
 
-	/* Initialize info with appropriate values */
-
-	char **environ_vars = get_environ(&info); /* Call get_environ function */
-
-	/* Process the returned array of environment variables as needed */
-
-	/* Free dynamically allocated memory if applicable */
-
-	return (0);
+	return (unsetenv(name));
 }
 
+/**
+ * populate_env_list - Populate the environment variable list
+ * @info: Pointer to info_t struct
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int populate_env_list(info_t *info)
+{
+	char **env = info->environ;
+
+	while (*env != NULL)
+	{
+		/* Code to populate the environment variable list */
+
+		env++;
+	}
+
+	return (0); /* or -1 on failure */
+}
