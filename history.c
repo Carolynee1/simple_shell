@@ -4,7 +4,7 @@
 /**
  * get_history_fil - Get history file
  * @info: Pointer to info_t struct
- *
+ *    *
  * Return: Pointer to history file
  */
 char *get_history_fil(info_t *info)
