@@ -1,132 +1,71 @@
 #include "shell.h"
 
-#define MAX_COMMAND_LENGTH 100
-#define MAX_HISTORY_SIZE 10
-#define HISTORY_FILE "history.txt"
 
-typedef struct
+/**
+ * get_history_fil - Get history file
+ * @info: Pointer to info_t struct
+ *
+ * Return: Pointer to history file
+ */
+char *get_history_fil(info_t *info)
 {
-	char history[MAX_HISTORY_SIZE][MAX_COMMAND_LENGTH];
-	int count;
-} History;
+	char *history_file = /* Allocate memory for history file */;
 
-void write_history(history *history)
-{
-	FILE *file = fopen(HISTORY_FILE, "w");
-	int i;
+	/* Code to retrieve history file */
 
-	if (file == NULL)
-	{
-		fprintf(stderr, "Error: Unable to open history file for writing.\n");
-		return;
-	}
-
-	for (i = 0; i < history->count; i++)
-	{
-		fprintf(file, "%s\n", history->history[i]);
-	}
-
-	fclose(file);
+	return (history_file);
 }
 
-void read_history(history *history);
+/**
+ * write_history - Write history
+ * @info: Pointer to info_t struct
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int write_history(info_t *info)
 {
-	FILE *file = fopen(HISTORY_FILE, "r");
-	int line_count = 0;
-	char line[MAX_COMMAND_LENGTH];
+	/* Code to write history */
 
-	if (file == NULL)
-	{
-		fprintf(stderr, "Error: Unable to open history file for reading.\n");
-		return;
-	}
-
-	while (fgets(line, sizeof(line), file) != NULL && line_count < MAX_HISTORY_SIZE)
-	{
-		line[strcspn(line, "\n")] = '\0';
-		strncpy(history->history[line_count], line, MAX_COMMAND_LENGTH);
-		line_count++;
-	}
-
-	fclose(file);
-	history->nclude "shell.h"
-
-#define MAX_COMMAND_LENGTH 100
-#define MAX_HISTORY_SIZE 10
-#define HISTORY_FILE "history.txt"
-
-		typedef struct
-
-		{
-			char history[MAX_HISTORY_SIZE][MAX_COMMAND_LENGTH];
-			int count;
-		} History;
-
-	void write_history(history *history)
-	{
-		FILE *file = fopen(HISTORY_FILE, "w");
-		int i;
-
-		if (file == NULL)
-		{
-			fprintf(stderr, "Error: Unable to open history file for writing.\n");
-			return;
-		}
-
-		for (i = 0; i < history->count; i++)
-		{
-			fprintf(file, "%s\n", history->history[i]);
-		}
-
-		fclose(file);
-	}
-
-	void read_history(history *history);
-	{
-		FILE *file = fopen(HISTORY_FILE, "r");
-		int line_count = 0;
-		char line[MAX_COMMAND_LENGTH];
-
-		if (file == NULL)
-		{
-			fprintf(stderr, "Error: Unable to open history file for reading.\n");
-			return;
-		}
-
-		while (fgets(line, sizeof(line), file) != NULL && line_count < MAX_HISTORY_SIZE)
-		{
-			line[strcspn(line, "\n")] = '\0';
-			strncpy(history->history[line_count], line, MAX_COMMAND_LENGTH);
-			line_count++;
-		}
-
-		fclose(file);
-		history->count = line_count;
-	}
-
-	int main(void)
-
-	{
-		History history;
-
-		history.count = 0;
-
-		read_history(&history);
-		write_history(&history);
-
-		return (0);
-	} count = line_count;
+	return (0); /* or -1 on failure */
 }
 
-int main(void)
+/**
+ * read_history - Read history
+ * @info: Pointer to info_t struct
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int read_history(info_t *info)
 {
-	History history;
+	/* Code to read history */
 
-	history.count = 0;
+	return (0); /* or -1 on failure */
+}
 
+/**
+ * build_history_list - Build history list
+ * @info: Pointer to info_t struct
+ * @buf: Buffer containing history data
+ * @line_count: Number of lines in the buffer
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int build_history_list(info_t *info, char *buf, int line_count)
+{
+	/* Code to build history list */
 
-	read_history(&history);
-	write_history(&history);
+	return (0); /* or -1 on failure */
+}
 
-	return (0);
+/**
+ * renumber_history - Renumber history
+ * @info: Pointer to info_t struct
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int renumber_history(info_t *info)
+{
+	/* Code to renumber history */
+
+	return (0); /* or -1 on failure */
 }
