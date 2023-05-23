@@ -61,6 +61,7 @@ int set_alias(info_t *info, char *str)
 	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
+
 /**
  * print_alias - Prints an alias string.
  * @node: The alias node.
@@ -79,9 +80,10 @@ int print_alias(list_t *node)
 		_putchar('\'');
 		_puts(p + 1);
 		_puts("'\n");
-		return (0);
 	}
+	return (0);
 }
+
 /**
  * _myalias - Mimics the alias builtin (man alias).
  * @info: Structure containing potential arguments. Used to maintain

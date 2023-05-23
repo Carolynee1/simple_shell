@@ -217,7 +217,7 @@ void free_info(info_t *, int);
 /* Caro&Josh_environ.c
  * It handles environment related operations and built-in commands
  * related to environment variables*/
-char *_getenv(info_t *, const char *);
+char *_getenv(info_t *info, const char *name);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);

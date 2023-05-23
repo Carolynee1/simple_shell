@@ -73,11 +73,14 @@ int custom_cd(info_t *info)
 		print_error(info, "can't cd to ");
 		_eputs(info->argv[1]);
 		_eputchar('\n');
-	} else
+	}
+	else
 	{
-		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
-	} return (0);
+		_getenv(info, "OLDPWD");
+		_getenv(info, "PWD");
+		getcwd(buffer, 1024);
+	}
+	return (0);
 }
 /**
  * custom_help - Prints a message indicating that the help function
@@ -91,7 +94,7 @@ int custom_help(info_t *info)
 	char **arg_array;
 
 	arg_array = info->argv;
-	-puts("help call works. Function not yet implemented \n");
+	_puts("help call works. Function not yet implemented \n");
 	if (0)
 		_puts(*arg_array);
 
