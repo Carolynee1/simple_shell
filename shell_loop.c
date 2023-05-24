@@ -56,12 +56,12 @@ int find_builtin(info_t *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{"env", _myenv},
+		{"exit", _my_exit},
+		{"env", _my_env},
 		{"help", _myhelp},
 		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
+		{"setenv", _my_setenv},
+		{"unsetenv", _my_unsetenv},
 		{"cd", _mycd},
 		{"alias", _myalias},
 		{NULL, NULL}
@@ -89,10 +89,10 @@ void find_cmd(info_t *info)
 	int i, k;
 
 	info->path = info->argv[0];
-	if (info->linecount_flag == 1)
+	if (info->line_count_flag == 1)
 	{
 		info->line_count++;
-		info->linecount_flag = 0;
+		info->line_count_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
 		if (!is_delim(info->arg[i], " \t\n"))

@@ -1,77 +1,145 @@
 #include "shell.h"
 
-
 /**
- * is_chain - Check if a given string is a chain.
- * @info: Pointer to info_t structure.
- * @str: The string to check.
- * @size: Pointer to store the size of the chain.
+ * is_chain - Checks if the line contains a command chaining operator.
+ * @info: Pointer to the info_t struct.
+ * @line: The input line.
+ * @i: Pointer to the current index in the line.
  *
- * Return: 1 if the string is a chain, 0 otherwise.
+ * Return: 1 if a command chaining operator is found, 0 otherwise.
  */
-int is_chain(struct info_s *info, char *str, size_t *size)
+int is_chain(info_t *info, char *line, size_t *i)
 {
-	/* Implementation of is_chain function */
-	/* ... */
+	size_t j = *i;
+
+	while (line[j] && (line[j] == ' ' || line[j] == '\t'))
+		j++;
+
+	if (line[j] == ';' || line[j] == '&' || line[j] == '|')
+	{
+		info->cmd_buf_type = (line[j] == ';') ? CMD_CHAIN :
+			((line[j] == '&') ? CMD_AND : CMD_OR);
+		check_chain(info, line, i, j, j);
+		return (1);
+	}
+
+	return (0);
 }
 
 /**
- * check_chain - Check the validity of a chain.
- * @info: Pointer to info_t structure.
- * @chain: The chain to check.
- * @size: Pointer to store the size of the chain.
- * @min_length: Minimum length of the chain.
- * @max_length: Maximum length of the chain.
- *
- * Return: None.
+ * check_chain - Checks the command chaining sequence in the line.
+ * @info: Pointer to the info_t struct.
+ * @line: The input line.
+ * @i: Pointer to the current index in the line.
+ * @j: The starting index of the command chaining sequence.
+ * @k: The current index in the command chaining sequence.
  */
-void check_chain(struct info_s *info, char *chain,
-		size_t *size, size_t min_length, size_t max_length)
+void check_chain(info_t *info, char *line, size_t *i, size_t j, size_t k)
 {
-	/* Implementation of check_chain function */
-	/* ... */
+	while (line[k] && (line[k] == ';' || line[k] == '&' || line[k] == '|'))
+		k++;
+
+	while (line[k] && (line[k] == ' ' || line[k] == '\t'))
+		k++;
+
+	if (line[k] && (line[k] != ';' && line[k] != '&' && line[k] != '|'))
+	{
+		*i = k;
+		*info->cmd_buf = _strdup(&line[j]);
+	}
+	else
+		*i = j;
 }
 
 /**
- * replace_alias - Replace aliases in the info structure.
- * @info: Pointer to info_t structure.
+ * replace_alias - Replaces alias with the corresponding string in argument.
+ * @info: Pointer to the info_t struct.
  *
- * Return: 1 on success, 0 on failure.
+ * Return: 1 if the alias is replaced, 0 otherwise.
  */
-int replace_alias(struct info_s *info)
+int replace_alias(info_t *info)
 {
-	/* Implementation of replace_alias function */
-	/* ... */
+	list_t *tmp = info->alias;
+	size_t len;
+
+	while (tmp)
+	{
+		len = _strlen(tmp->str);
+		if (_strcmp(tmp->str, info->arg, len) == 0)
+		{
+			if (replace_string(&info->arg, tmp->str) == -1)
+				return (-1);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+
+	return (0);
 }
 
 /**
- * replace_vars - Replace variables in the info structure.
- * @info: Pointer to info_t structure.
+ * replace_vars - Replaces variables with their corresponding values;
+ * in the argument.
+ * @info: Pointer to the info_t struct.
  *
- * Return: 1 on success, 0 on failure.
+ * Return: 1 if the variable is replaced, 0 otherwise.
  */
-int replace_vars(struct info_s *info)
+int replace_vars(info_t *info)
 {
-	/* Implementation of replace_vars function */
-	/* ... */
+	list_t *tmp = info->env;
+	size_t len;
+
+	while (tmp)
+	{
+		len = _strlen(tmp->str);
+		if (_strcmp(tmp->str, info->arg, len) == 0)
+		{
+			if (replace_string(&info->arg, tmp->str) == -1)
+				return (-1);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+
+	return (0);
 }
 
 /**
- * replace_string - Replace a specified string with a new string.
- * @str_ptr: Pointer to the string to replace.
- * @new_str: The new string.
+ * replace_string - Replaces a variable or alias with a string;
+ * in the given argument.
+ * @str: Pointer to the argument string.
+ * @var: The variable or alias string.
  *
- * Return: 1 on success, 0 on failure.
+ * Return: 0 on success, -1 on failure.
  */
-int replace_string(char **str_ptr, char *new_str)
+int replace_string(char **str, char *var)
 {
-	/* Implementation of replace_string function */
-	/* ... */
-}
+	char *new_str;
+	char *ptr;
+	size_t len_var;
+	size_t len_str;
+	size_t len_diff;
 
-/**
- * main - Entry point of the program.
- *
- * Return: Always 0.
- */
+	len_var = _strlen(var);
+	len_str = _strlen(*str);
+	len_diff = len_str - len_var;
+
+	if (len_diff = 0)
+	{
+		ptr = strstr(*str, var);
+		if (ptr != NULL)
+		{
+			new_str = _realloc(*str, len_str + len_diff + 1, len_str + 1);
+			if (new_str == NULL)
+				return (-1);
+
+			ptr = new_str + (ptr - *str);
+			_strcpy(ptr + len_var, ptr);
+			_strncpy(ptr, var, len_var);
+
+			*str = new_str;
+		}
+	}
+
+	return (0);
 }
