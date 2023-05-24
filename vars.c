@@ -60,6 +60,7 @@ void check_chain(info_t *info, char *line, size_t *i, size_t j, size_t k)
 int replace_alias(info_t *info)
 {
 	list_t *tmp = info->alias;
+
 	size_t len __attribute__((unused));
 
 	while (tmp)
@@ -87,6 +88,7 @@ int replace_alias(info_t *info)
 int replace_vars(info_t *info)
 {
 	list_t *tmp = info->env;
+
 	size_t len __attribute__((unused));
 
 	while (tmp)

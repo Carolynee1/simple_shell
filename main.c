@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
 	int fd;
 	info_t info;
-	
+
 	{
 	info.argc = argc;
 	info.argv = argv;
@@ -31,7 +31,6 @@ int main(int argc, char *argv[])
 	info.cmd_buf = NULL;
 	info.cmd_buf_type = 0;
 	}
-
 	fd = 2;
 	if (argc == 2)
 	{
@@ -48,21 +47,12 @@ int main(int argc, char *argv[])
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
 				exit(127);
-			}
-			return (EXIT_FAILURE);
-		}
-		info.readfd = fd;
-	}
-	/*Initialize shell history*/
-	read_history(&info);
-	/*populate environment list*/
+			} return (EXIT_FAILURE);
+		} info.readfd = fd;
+	} read_history(&info);
 	populate_env_list(&info);
-	/*Main shell loop*/
 	hsh(&info, argv);
-	/*write shell history before exiting*/
 	write_history(&info);
-	/*free allocated memory*/
 	free_info(&info, 1);
-
 	return (EXIT_SUCCESS);
 }

@@ -34,8 +34,8 @@ void init_info(info_t *info)
 void set_info(info_t *info, char **av)
 {
 	int i = 0;
-	init_info(info);
 
+	init_info(info);
 	info->fname = av[0];
 
 	if (info->arg)

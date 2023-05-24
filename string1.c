@@ -74,6 +74,7 @@ int _putchar(char c)
 	char source[] = "Hello, World!";
 	char destination[20];
 	char *duplicate = NULL;
+
 	_strcpy(destination, source);
 	_puts(destination);
 

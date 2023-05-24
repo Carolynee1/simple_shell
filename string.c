@@ -60,7 +60,7 @@ char *starts_with(const char *str, const char *substr)
 		substr++;
 		str++;
 	}
-	return (char *)str;
+	return ((char *)str);
 }
 
 /**

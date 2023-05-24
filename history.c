@@ -12,7 +12,7 @@ char *get_history_file(info_t *info)
 	char *home;
 	char *file_path;
 	struct stat st;
-	
+
 	home = _getenv(info, "HOME");
 	if (home == NULL)
 		return (NULL);
@@ -22,12 +22,13 @@ char *get_history_file(info_t *info)
 	strcpy(file_path, home);
 	strcat(file_path, "/");
 	strcat(file_path, HIST_FILE);
-	
+
 	if (stat(file_path, &st) == -1)
 	{
 		if (errno == ENOENT)
 		{
 			FILE *file = fopen(file_path, "w");
+
 			if (file == NULL)
 			{
 				free(file_path);
