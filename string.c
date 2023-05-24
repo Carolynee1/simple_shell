@@ -42,21 +42,25 @@ int _strcmp(const char *str1, const char *str2)
 /**
  * starts_with - Checks if a string starts with a specific prefix.
  * @str: The string to check.
- * @prefix: The prefix to search for.
+ * @substr: The substring to search for.
  *
- * Return: A pointer to the remaining string if the prefix is found,
- * otherwise NULL.
+ * Return: a pointer to str if str starts with substr, NULL otherwise
  */
-char *starts_with(const char *str, const char *prefix)
+char *starts_with(const char *str, const char *substr)
 {
-	while (*prefix != '\0')
+	if (str == NULL || substr == NULL)
+		return (NULL);
+
+
+	while (*substr != '\0')
 	{
-		if (*str != *prefix)
+		if (*substr != *str)
 			return (NULL);
+
+		substr++;
 		str++;
-		prefix++;
 	}
-	return (str);
+	return (char *)str;
 }
 
 /**

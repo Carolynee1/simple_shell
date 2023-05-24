@@ -75,7 +75,7 @@ int _my_setenv(info_t *info)
 	_strcat(env_str, "=");
 	_strcat(env_str, value);
 	
-	if (_setenv(info, name, value) == -1)
+		if (setenv(name, value, 1) != 0)
 	{
 		if (bfree((void **)&env_str) == -1)
 		{
@@ -120,7 +120,7 @@ int _my_unsetenv(info_t *info)
 	}
 	name = info->argv[1];
 
-	if (_unsetenv(info, name) == -1)
+		if (unsetenv(name) != 0)
 	{
 		return (2);
 	}

@@ -136,7 +136,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	}
 	for (i = 0; i < *length; i++)
 	{
-		if (p[i] '\n')
+		if ((*p)[i] == '\n')
 		break;
 	}
 	if (i == *length)
@@ -148,7 +148,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	}
 	len = i;
 	*length -= len + 1;
-	p[len] = '\0';
+	(*ptr)[len] = '\0';
 	*ptr = *p + len + 1;
 
 	if (info->cmd_buf_type == CMD_NORM)

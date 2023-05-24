@@ -56,6 +56,7 @@ void print_error(info_t *info, char *msg)
 int print_d(int fd, int num)
 {
 	char *num_str = convert_number(num, 0, 0);
+	info_t *INFO = NULL;
 
 	if (num_str)
 	{
@@ -85,6 +86,7 @@ char *convert_number(long int num, int flags, int width)
 	char *res;
 	int i, len, neg;
 	long int temp;
+	info_t *INFO = NULL;
 
 	if (flags & CONVERT_UNSIGNED)
 	{
@@ -138,7 +140,7 @@ void remove_comments(char *line)
 			line[i] = '\0';
 			break;
 		}
-			else if (line[i] == "");
+			else if (line[i] == '\0')
 		{
 			in_quotes = !in_quotes;
 		}

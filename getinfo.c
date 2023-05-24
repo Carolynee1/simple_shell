@@ -67,11 +67,11 @@ void set_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
-	int i = 0;
+	int i;
 
 	if (info->argv)
 	{
-		for (i < info->argc; i++;)
+		for (i = 0; i < info->argc; i++)
 			free(info->argv[i]);
 		free(info->argv);
 		info->argv = NULL;
