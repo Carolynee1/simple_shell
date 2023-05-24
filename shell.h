@@ -190,9 +190,9 @@ void remove_comments(char *);
 
 /* Caro&Josh_builtin.c
  * this is for the built-in shell commands.*/
-int custom_exit(info_t *);
-int custom_cd(info_t *);
-int custom_help(info_t *);
+int _my_exit(info_t *);
+int _mycd(info_t *);
+int _myhelp(info_t *);
 
 /* Caro&Josh_builtin1.c
  * these are additional functions for the built-in shell commands*/

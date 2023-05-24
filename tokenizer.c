@@ -62,12 +62,11 @@ char **strtow2(char *str, char delimiter)
 }
 
 /**
- * main - Entry point of the program
+ * run - Entry point of the program
  *
  * Return: Always 0.
  */
-
-int main(void)
+int run(void)
 {
 	char str1[] = "Hello World, How are you?";
 	char str2[] = "Welcome,to,the,world";

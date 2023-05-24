@@ -14,7 +14,6 @@ int hsh(info_t *info, char **av)
 
 	while (r != -1 && builtin_ret != -2)
 	{
-		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
@@ -55,7 +54,7 @@ int hsh(info_t *info, char **av)
 int find_builtin(info_t *info)
 {
 	int i, built_in_ret = -1;
-	builtin_table builtintbl[] = {
+	builtin_table builtins[] = {
 		{"exit", _my_exit},
 		{"env", _my_env},
 		{"help", _myhelp},
@@ -67,11 +66,11 @@ int find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+	for (i = 0; builtins[i].type; i++)
+		if (_strcmp(info->argv[0], builtins[i].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
+			built_in_ret = builtins[i].func(info);
 			break;
 		}
 	return (built_in_ret);

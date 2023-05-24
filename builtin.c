@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * custom_exit - Exits the shell with a given exit status
+ * _my_exit - Exits the shell with a given exit status
  * @info: Structure containing potential arguements.used to maintain
  *	constant function prototype.
  * Return: Exits with a given exit status:
@@ -9,7 +9,7 @@
  *	-1 if info->argv[0] == "exit" and info->argv[1] doesn't exist.
  *	1 if an illegal number is provided as an argument.
  */
-int custom_exit(info_t *info)
+int _my_exit(info_t *info)
 {
 	int exit_status;
 
@@ -31,12 +31,12 @@ int custom_exit(info_t *info)
 	return (-2);
 }
 /**
- * custom_cd - Changes the current directory of the process.
+ * _mycd - Changes the current directory of the process.
  * @info: Structure containing potential arguments. Used to maintain
  *	constant function prototype.
  * Return: Always 0.
  */
-int custom_cd(info_t *info)
+int _mycd(info_t *info)
 {
 	char *current_dir, *dir;
 	char buffer[1024];
@@ -83,13 +83,13 @@ int custom_cd(info_t *info)
 	return (0);
 }
 /**
- * custom_help - Prints a message indicating that the help function
+ * _myhelp - Prints a message indicating that the help function
  *	is not yet implemented.
  * @info: Structure containing potential arguments. Used to maintain
  *	constant function prototype.
  *	Return: Always 0.
  */
-int custom_help(info_t *info)
+int _myhelp(info_t *info)
 {
 	char **arg_array;
 

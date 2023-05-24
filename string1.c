@@ -71,11 +71,6 @@ void _puts(char *str)
  */
 int _putchar(char c)
 {
-	return (putchar(c));
-}
-
-int main(void)
-{
 	char source[] = "Hello, World!";
 	char destination[20];
 	char *duplicate = NULL;
@@ -93,5 +88,5 @@ int main(void)
 	_putchar('\n');
 
 	return (0);
+	return (putchar(c));
 }
-

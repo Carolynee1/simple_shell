@@ -60,12 +60,12 @@ void check_chain(info_t *info, char *line, size_t *i, size_t j, size_t k)
 int replace_alias(info_t *info)
 {
 	list_t *tmp = info->alias;
-	size_t len;
+	size_t len __attribute__((unused));
 
 	while (tmp)
 	{
 		len = _strlen(tmp->str);
-		if (_strcmp(tmp->str, info->arg, len) == 0)
+		if (_strcmp(tmp->str, info->arg) == 0)
 		{
 			if (replace_string(&info->arg, tmp->str) == -1)
 				return (-1);
@@ -87,12 +87,12 @@ int replace_alias(info_t *info)
 int replace_vars(info_t *info)
 {
 	list_t *tmp = info->env;
-	size_t len;
+	size_t len __attribute__((unused));
 
 	while (tmp)
 	{
 		len = _strlen(tmp->str);
-		if (_strcmp(tmp->str, info->arg, len) == 0)
+		if (_strcmp(tmp->str, info->arg) == 0)
 		{
 			if (replace_string(&info->arg, tmp->str) == -1)
 				return (-1);
@@ -124,7 +124,7 @@ int replace_string(char **str, char *var)
 	len_str = _strlen(*str);
 	len_diff = len_str - len_var;
 
-	if (len_diff = 0)
+	if (len_diff == 0)
 	{
 		ptr = strstr(*str, var);
 		if (ptr != NULL)
