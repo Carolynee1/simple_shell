@@ -36,7 +36,6 @@
 
 extern char **environ;
 
-
 /**
  * struct liststr -singly linked list
  * @num: the number field
@@ -94,7 +93,7 @@ typedef struct passinfo
 	int cmd_buf_type; /* CMD_type ||, &&, */
 	int readfd;
 	int histcount;
-}info_t;
+} info_t;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -140,7 +139,7 @@ int _putsfd(char *str, int fd);
 /* Caro&Josh_string.c */
 /*They likely provide various string manipulation functions */
 int _strlen(char *);
-int _strcmp(char *, char *);
+int _strcmp(const char *, const char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
@@ -217,10 +216,10 @@ void free_info(info_t *, int);
 /* Caro&Josh_environ.c
  * It handles environment related operations and built-in commands
  * related to environment variables*/
-char *_getenv(info_t *info, const char *name);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
+char *_getenv(info_t *info, const char *);
+int _my_env(info_t *);
+int _my_setenv(info_t *);
+int _my_unsetenv(info_t *);
 int populate_env_list(info_t *);
 
 /* Caro&Josh_getenv.c

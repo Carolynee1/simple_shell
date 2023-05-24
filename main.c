@@ -7,15 +7,10 @@
  *
  * Return: 0 on success, 1 on error
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	info_t info[] = { INFO_INIT };
+	info_t info = INFO_INIT;
 	int fd = 2;
-
-	asm ("mov %1, %0\n\t"
-			"add $3, %0"
-			: "=r" (fd)
-			: "r" (fd));
 
 	if (argc == 2)
 	{
@@ -27,7 +22,7 @@ int main(int argc, char **argv)
 			if (errno == ENOENT)
 			{
 				_eputs(argv[0]);
-				_eputs(":0: Cant't open ");
+				_eputs(": 0: Cant't open ");
 				_eputs(argv[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
@@ -35,10 +30,18 @@ int main(int argc, char **argv)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		info.readfd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, argv);
+	/*Initialize shell history*/
+	read_history(&info);
+	/*populate environment list*/
+	populate_env_list(&info);
+	/*Main shell loop*/
+	hsh(&info, argv);
+	/*write shell history before exiting*/
+	write_history(&info);
+	/*free allocated memory*/
+	free_info(&info, 1);
+
 	return (EXIT_SUCCESS);
 }

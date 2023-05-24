@@ -25,7 +25,7 @@ int _strlen(char *str)
  * Return: 0 if the strings are equal, otherwise the difference
  * between the ASCII values of the first differing characters.
  */
-int _strcmp(char *str1, char *str2)
+int _strcmp(const char *str1, const char *str2)
 {
 	int i = 0;
 
@@ -56,8 +56,7 @@ char *starts_with(const char *str, const char *prefix)
 		str++;
 		prefix++;
 	}
-
-	return (char *str);
+	return (str);
 }
 
 /**

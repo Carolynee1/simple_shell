@@ -12,7 +12,7 @@ char **strtow(char *str, char *delimiter)
 	char **result = NULL;
 	char *token;
 	int count = 0;
-	int i;
+	int i __attribute__((unused));
 
 	token = strtok(str, delimiter);
 
@@ -43,7 +43,7 @@ char **strtow2(char *str, char delimiter)
 	char **result = NULL;
 	char *token;
 	int count = 0;
-	int i;
+	int i __attribute__((unused));
 
 	token = strtok(str, &delimiter);
 

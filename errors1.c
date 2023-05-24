@@ -138,7 +138,7 @@ void remove_comments(char *line)
 			line[i] = '\0';
 			break;
 		}
-		else if (line[i], "")
+			else if (line[i] == "");
 		{
 			in_quotes = !in_quotes;
 		}

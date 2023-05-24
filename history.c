@@ -89,7 +89,7 @@ int read_history(info_t *info)
 	while ((read = getline(&line, &len, file)) != -1)
 	{
 		linecount++;
-		if (build_history_list(info, Line, linecount) == -1)
+		if (build_history_list(info, line, linecount) == -1)
 		{
 			fclose(file);
 			free(line);

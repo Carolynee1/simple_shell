@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <stdlib.h>
 
 /**
  * _getenv - Retrieves the value of an environment variable
@@ -14,7 +15,7 @@ char *_getenv(info_t *info, const char *name)
 
 	while (env != NULL)
 	{
-		if (_strcmp(env->str, name) == 0)
+		if (_strcmp((char*)env->str, name) == 0)
 		{
 			value = _strchr(env->str, '=') + 1;
 			break;
@@ -30,7 +31,7 @@ char *_getenv(info_t *info, const char *name)
  *
  * Return: Always0 on success,
  */
-int _myenv(info_t *info)
+int _my_env(info_t *info)
 {
 	list_t *env = info->env;
 
@@ -49,7 +50,7 @@ int _myenv(info_t *info)
  *
  * Return: 0 on success, 2 on failure
  */
-int _mysetenv(info_t *info)
+int _my_setenv(info_t *info)
 {
 	char *name, *value;
 	char *env_str;
@@ -63,7 +64,8 @@ int _mysetenv(info_t *info)
 	name = info->argv[1];
 	value = info->argv[2];
 
-	environ str = malloc(_strlen(name) + _strlen(value) + 2);
+	env_str = malloc(_strlen(name) + _strlen(value) + 2);
+	
 	if (env_str == NULL)
 	{
 		print_error(info, "setenv: Memory allocation failed");
@@ -106,7 +108,7 @@ int _mysetenv(info_t *info)
  *
  * Return: 0 on success, 2 on failure
  */
-int _myunsetenv(info_t *info)
+int _my_unsetenv(info_t *info)
 {
 	char *name;
 	char **environ = info->environ;

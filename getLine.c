@@ -106,7 +106,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
  * sigintHandler - signal handler fo SIGINT
  * @sig_num: signal number
  */
-void sigintHandler(int sig_num)
+void sigintHandler(int sig_num __attribute__((unused)))
 {
 	signal(SIGINT, sigintHandler);
 	_putchar('\n');
@@ -124,7 +124,7 @@ void sigintHandler(int sig_num)
  */
 int _getline(info_t *info, char **ptr, size_t *length)
 {
-	ssize_t n;
+	ssize_t n __attribute__((unused));
 	size_t i, len;
 	char **p = ptr;
 
@@ -136,7 +136,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	}
 	for (i = 0; i < *length; i++)
 	{
-		if (p[i], '\n')
+		if (p[i] '\n')
 		break;
 	}
 	if (i == *length)

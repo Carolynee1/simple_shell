@@ -33,6 +33,7 @@ void init_info(info_t *info)
  */
 void set_info(info_t *info, char **av)
 {
+	int i = 0;
 	init_info(info);
 
 	info->fname = av[0];
@@ -49,7 +50,6 @@ void set_info(info_t *info, char **av)
 				info->argv[1] = NULL;
 		}
 	}
-	int i = 0;
 
 	for (; info->argv && info->argv[i]; i++)
 		;
@@ -67,9 +67,11 @@ void set_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
+	int i = 0;
+
 	if (info->argv)
 	{
-		for (int i = 0; i < info->argc; i++)
+		for (i < info->argc; i++;)
 			free(info->argv[i]);
 		free(info->argv);
 		info->argv = NULL;
