@@ -70,7 +70,7 @@ list_t;
  * @status: the return status of the last executed command
  * @cmd_buf: address of pointer to cmd_buf, on if chaining
  * @cmd_buf_type: CMD_type ||, &&,;
- * @readfd: the fd from which to read line input 
+ * @readfd: the fd from which to read line input
  * @histcount: the history line number count
  */
 typedef struct passinfo
@@ -110,25 +110,28 @@ typedef struct builtin
 {
 	char *type;
 	int (*func)(info_t *);
-}builtin_table;
+} builtin_table;
 
 #define MAX_LENGTH 100 /* Or any other suitable value */
 
-/* Caro&Josh_shloop.c */ 
-/*These function declaration are part of the shloop.c file, they are related to the main loop and execution of commands in the shell */
+/* Caro&Josh_shloop.c */
+/*These function declaration are part of the shloop.c file,
+ * they are related to the main loop and execution of commands in the shell */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* Caro&Josh_parser.c */
-/* These functions are relating to the parsing and handling commands within the shell */
+/* These functions are relating to the parsing and handling commands,
+ * within the shell */
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
 /* loophsh.c */
-/* this function is likely the entry point or the main function for the shell program */
+/* this function is likely the entry point or the main function,
+ * for the shell program */
 int loophsh(char **);
 
 /* Caro&Josh_errors.c */
@@ -163,8 +166,8 @@ char *_strchr(char *, char);
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
-/* Caro&Josh_realloc.c 
- * this is for memory management and reallocation */
+/* Caro&Josh_realloc.c*/
+/* this is for memory management and reallocation */
 char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
