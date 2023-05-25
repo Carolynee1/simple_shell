@@ -1,58 +1,71 @@
 #include "shell.h"
 
 /**
- * main - entry point
- * @argc: argument count
- * @argv: argument vector
- *
- * Return: 0 on success, 1 on error
- */
+ * cleanup - Frees allocated resources and closes the file descriptor.
+ * @info: Pointer to the info_t structure.
+ * @fd: File descriptor.
+ **/
+void cleanup(info_t *info, int fd)
+{
+	free_info(info, 1);
+
+	if (fd != 2)
+		close(fd);
+}
+
+/**
+ * run_shell - Executes the shell logic.
+ * @info: Pointer to the info_t structure.
+ * @argv: Array of command-line arguments.
+ **/
+void run_shell(info_t *info, char *argv[])
+{
+	hsh(info, argv);
+}
+
+/**
+ * print_error_message - Prints an error message.
+ * @program_name: Name of the program.
+ * @file_name: Name of the file.
+ **/
+void print_error_message(char *program_name, char *file_name)
+{
+	_eputs(program_name);
+	_eputs(": 0: Can't open ");
+	_eputs(file_name);
+	_eputchar('\n');
+	_eputchar(BUF_FLUSH);
+}
+
+/**
+ * exit_with_error - Exits the program with an error code.
+ * @exit_code: The exit code.
+ **/
+void exit_with_error(int exit_code)
+{
+	exit(exit_code);
+}
+
+/**
+ * main - Entry point of the program.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line arguments.
+ * Return: Exit status.
+ **/
 int main(int argc, char *argv[])
 {
-	int fd;
 	info_t info;
+	int fd = 2;
 
-	{
-	info.argc = argc;
-	info.argv = argv;
-	info.line_count_flag = 0;
-	info.status = 0;
-	info.histcount = 0;
-	info.fname = NULL;
-	info.env = NULL;
-	info.readfd = 0;
-	info.history = NULL;
-	info.line_count = 0;
-	info.path = NULL;
-	info.err_num = 0;
-	info.alias = 0;
-	info.environ = 0;
-	info.env_changed = 0;
-	info.cmd_buf = NULL;
-	info.cmd_buf_type = 0;
-	}
-	fd = 2;
-	if (argc == 2)
-	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
-		{
-			if (errno == EACCES)
-				exit(126);
-			if (errno == ENOENT)
-			{
-				_eputs(argv[0]);
-				_eputs(": 0: Cant't open ");
-				_eputs(argv[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
-				exit(127);
-			} return (EXIT_FAILURE);
-		} info.readfd = fd;
-	} read_history(&info);
+	initialize_info(&info, argc, argv);
+	handle_file_opening(&info);
+
+	read_history(&info);
 	populate_env_list(&info);
-	hsh(&info, argv);
+	run_shell(&info, argv);
 	write_history(&info);
-	free_info(&info, 1);
+	cleanup(&info, fd);
+
 	return (EXIT_SUCCESS);
 }
+

@@ -90,7 +90,7 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
-	
+
 	char **cmd_buf;/*pointer to cmd: chain buffer for memmory management*/
 	int cmd_buf_type; /* CMD_type ||, &&, */
 	int readfd;
@@ -263,4 +263,11 @@ int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
 
+
+void initialize_info(info_t *info, int argc, char *argv[]);
+void handle_file_opening(info_t *info);
+void cleanup(info_t *info, int fd);
+void run_shell(info_t *info, char *argv[]);
+void print_error_message(char *program_name, char *file_name);
+void exit_with_error(int exit_code);
 #endif

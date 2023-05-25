@@ -73,10 +73,12 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size > old_size)
 		_memset(new_ptr + old_size, '\0', new_size - old_size);
 
-	while (old_size--)
+	while (old_size > 0)
+	{
+		old_size--;
 		new_ptr[old_size] = ((char *)ptr)[old_size];
 
 	free(ptr);
-
+	}
 	return (new_ptr);
 }
