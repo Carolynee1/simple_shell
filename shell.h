@@ -115,23 +115,22 @@ typedef struct builtin
 #define MAX_LENGTH 100 /* Or any other suitable value */
 
 /* Caro&Josh_shloop.c */
-/*These function declaration are part of the shloop.c file,
- * they are related to the main loop and execution of commands in the shell */
+/*These function declaration are part of the shloop.c file*/
+ /* they are related to the main loop and execution of commands in the shell */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* Caro&Josh_parser.c */
-/* These functions are relating to the parsing and handling commands,
- * within the shell */
+/* These functions are relating to the parsing and handling commands */
+ /* within the shell */
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
-/* loophsh.c */
-/* this function is likely the entry point or the main function,
- * for the shell program */
+/* Caro&Josh_loophsh.c */
+/* this function is likely the entry point or the main function for shell */
 int loophsh(char **);
 
 /* Caro&Josh_errors.c */
@@ -172,33 +171,33 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
-/* Caro&Josh_memory.c
- * This for memory deallocation */
+/* Caro&Josh_memory.c*/
+/* This for memory deallocation */
 int bfree(void **);
 
-/* Caro&Josh_atoi.c 
- * this is for string manipulations and conversion.*/
+/* Caro&Josh_atoi.c */
+ /* this is for string manipulations and conversion.*/
 int interactive(info_t *);
 int is_delim(char, char *);
 int _isaplha(int);
 int _atoi(char *);
 
-/* Caro&Josha_errors1.c
- * this is also for error handling and string manipulation.*/
+/* Caro&Josha_errors1.c */
+/* this is also for error handling and string manipulation.*/
 int _erratoi(char *);
 void print_error(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* Caro&Josh_builtin.c
- * this is for the built-in shell commands.*/
+/* Caro&Josh_builtin.c */
+/* this is for the built-in shell commands.*/
 int _my_exit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
-/* Caro&Josh_builtin1.c
- * these are additional functions for the built-in shell commands*/
+/* Caro&Josh_builtin1.c */
+ /* these are additional functions for the built-in shell commands*/
 int _myhistory(info_t *);
 int _myalias(info_t *);
 int unset_alias(info_t *, char *);
@@ -206,60 +205,61 @@ int set_alias(info_t *, char *);
 int print_alias(list_t *);
 int find_builtin(info_t *);
 
-/* Caro&Josh_getline.c
- * this handles reading user input from the command line*/
+/* Caro&Josh_getline.c */
+ /* this handles reading user input from the command line*/
 ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
-/* Caro&Josh_getinfo.c
- * this involves managing and manipulating the 'info_t' structure, which stores information about the shell.*/
+/* Caro&Josh_getinfo.c */
+ /* this involves managing and manipulating the 'info_t' structure */
+  /* which stores information about the shell.*/
 void init_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
-/* Caro&Josh_environ.c
- * It handles environment related operations and built-in commands
- * related to environment variables*/
+/* Caro&Josh_environ.c */
+ /* It handles environment related operations and built-in commands */
+ /* related to environment variables*/
 char *_getenv(info_t *info, const char *);
 int _my_env(info_t *);
 int _my_setenv(info_t *);
 int _my_unsetenv(info_t *);
 int populate_env_list(info_t *);
 
-/* Caro&Josh_getenv.c
- * this provides additional funcions for managing environment variables*/
+/* Caro&Josh_getenv.c */
+ /* this provides additional funcions for managing environment variables*/
 char **get_environ(info_t *);
 int _unset_env_var(info_t *, char *);
 int _set_env_var(info_t *, char *, char *);
 
-/* Caro&Josh_history.c
- * this handles the history feature of the shell,
- * and allows storing and retrieving previously executed commands*/
+/* Caro&Josh_history.c */
+ /* this handles the history feature of the shell */
+ /* and allows storing and retrieving previously executed commands*/
 char *get_history_fil(info_t *info);
 int write_history(info_t *info);
 int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int line_count);
 int renumber_history(info_t *info);
 
-/* Caro&Josh_lists.c
- * This provides function for manipulating linked lists.*/
+/* Caro&Josh_lists.c */
+ /* This provides function for manipulating linked lists.*/
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
-/* Caro&Josh_lists1.c
- * this provides additional functions for manipulating linked lists*/
+/* Caro&Josh_lists1.c */
+ /* this provides additional functions for manipulating linked lists*/
 size_t List_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *,list_t *);
+ssize_t get_node_index(list_t *, list_t *);
 
-/* Caro&Josh_vars.c
- * This is for handling variable substitution and string replacement.*/
+/* Caro&Josh_vars.c */
+ /* This is for handling variable substitution and string replacement.*/
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
