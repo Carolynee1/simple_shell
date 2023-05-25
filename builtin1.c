@@ -26,6 +26,7 @@ int _myhistory(info_t *info)
  *
  * Return: Always 0 on succes, 1 on error.
  */
+
 int unset_alias(info_t *info, char *str)
 {
 	char *p, c;
@@ -36,12 +37,12 @@ int unset_alias(info_t *info, char *str)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias,
-				str, -1)));
+	ret = delete_node(&(info->alias), node_starts_with(info->alias, str, '='));
 	*p = c;
 	return (ret);
 }
+
+
 /**
  * set_alias - Sets an alias to a string.
  * @info: Parameter struct.
@@ -49,6 +50,7 @@ int unset_alias(info_t *info, char *str)
  *
  * Return: Always 0 on succes, 1 on errorr.
  */
+
 int set_alias(info_t *info, char *str)
 {
 	char *p;
@@ -56,11 +58,12 @@ int set_alias(info_t *info, char *str)
 	p = _strchr(str, '=');
 	if (!p)
 		return (1);
-	if (!*++p)
+	if (!*p)
 		return (unset_alias(info, str));
 	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
+
 
 /**
  * print_alias - Prints an alias string.
@@ -68,6 +71,7 @@ int set_alias(info_t *info, char *str)
  *
  * Return: Always 0 on success, 1 on error.
  */
+
 int print_alias(list_t *node)
 {
 	char *p = NULL, *a = NULL;
@@ -75,7 +79,7 @@ int print_alias(list_t *node)
 	if (node)
 	{
 		p = _strchr(node->str, '=');
-		for (a = node->str; a <= p; a++)
+		for (a = node->str; a < p; a++)
 			_putchar(*a);
 		_putchar('\'');
 		_puts(p + 1);
@@ -83,6 +87,7 @@ int print_alias(list_t *node)
 	}
 	return (0);
 }
+
 
 /**
  * _myalias - Mimics the alias builtin (man alias).

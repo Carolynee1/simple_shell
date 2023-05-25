@@ -48,20 +48,20 @@ int _mycd(info_t *info)
 	if (!info->argv[1])
 	{
 		dir = _getenv(info, "HOME=");
-	if (!dir)
-	chdir_ret = chdir((dir = _getenv(info, "PWD=")) ? dir : "/");  else
-			chdir_ret = chdir(dir);
+		if (!dir)
+			chdir_ret = chdir((dir = _getenv(info, "PWD=")) ? dir : "/");  else
+				chdir_ret = chdir(dir);
 	} else if (_strcmp(info->argv[1], "-") == 0)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
 			_puts(current_dir);
 			_putchar('\n');
-		return (1);
+			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD="));
 		_putchar('\n');
-	chdir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
+		chdir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
 	{

@@ -54,6 +54,7 @@ int hsh(info_t *info, char **av)
 int find_builtin(info_t *info)
 {
 	int i, built_in_ret = -1;
+
 	builtin_table builtins[] = {
 		{"exit", _my_exit},
 		{"env", _my_env},
@@ -118,8 +119,9 @@ void find_cmd(info_t *info)
 	}
 }
 
+
 /**
- * fork_cmd - Forks an exec thread to run a command
+ * fork_cmd - Forks a child process to run a command
  * @info: Pointer to the parameter and return info struct
  *
  * Return: void
@@ -131,27 +133,34 @@ void fork_cmd(info_t *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
-		perror("Error:");
+		perror("Error: Fork failed");
 		return;
 	}
+
 	if (child_pid == 0)
 	{
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
-			free_info(info, 1);
-			if (errno == EACCES)
-				exit(126);
-			exit(1);
+			perror("Error: Execution failed");
+			exit(EXIT_FAILURE);
 		}
-		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{
-		wait(&(info->status));
-		if (WIFEXITED(info->status))
+		int status;
+
+		if (waitpid(child_pid, &status, 0) == -1)
 		{
-			info->status = WEXITSTATUS(info->status);
+			perror("Error: Wait failed");
+			info->status = 1;
+		}
+		else
+		{
+			if (WIFEXITED(status))
+				info->status = WEXITSTATUS(status);
+			else if (WIFSIGNALED(status))
+				info->status = 128 + WTERMSIG(status);
+
 			if (info->status == 126)
 				print_error(info, "Permission denied\n");
 		}

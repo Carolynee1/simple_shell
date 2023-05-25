@@ -273,4 +273,8 @@ void cleanup(info_t *info, int fd);
 void run_shell(info_t *info, char *argv[]);
 void print_error_message(char *program_name, char *file_name);
 void exit_with_error(int exit_code);
+int delete_node(list_t **head, list_t *node);
+
+
+
 #endif
