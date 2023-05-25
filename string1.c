@@ -61,33 +61,14 @@ void _puts(char *str)
 		i++;
 	}
 }
-
 /**
- * _putchar - Writes a character to stdout.
- * @c: The character to be written.
+ * _putchar - writes the character c to stout
+ * @c: the character to print
  *
- * Return: On success, returns the character written.
- * On error, returns EOF.
+ * Return: 0 (Success).
+ *
  */
 int _putchar(char c)
 {
-	char source[] = "Hello, World!";
-	char destination[20];
-	char *duplicate = NULL;
-
-	_strcpy(destination, source);
-	_puts(destination);
-
-	  duplicate = _strdup(source);
-
-	if (duplicate != NULL)
-	{
-		_puts(duplicate);
-		free(duplicate);
-	}
-
-	_putchar('\n');
-
-	return (0);
-	return (putchar(c));
+	return (write(1, &c, 1));
 }

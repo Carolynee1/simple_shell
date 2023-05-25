@@ -76,7 +76,7 @@ int _my_setenv(info_t *info)
 	{
 		if (bfree((void **)&env_str) == -1)
 		{
-		print_error(info, "setenv: Memory deallocation failed");
+			print_error(info, "setenv: Memory deallocation failed");
 			return (2);
 		} return (2);
 	}
@@ -84,9 +84,9 @@ int _my_setenv(info_t *info)
 	{
 		if (_strcmp(*environ, name) == 0)
 		{
-		if (bfree((void **)environ) == -1)
+			if (bfree((void **)environ) == -1)
 			{
-		print_error(info, "setenv: Memory deallocation failed");
+				print_error(info, "setenv: Memory deallocation failed");
 				return (2);
 			} break;
 		} environ++;
@@ -106,11 +106,11 @@ int _my_unsetenv(info_t *info)
 
 	if (info->argc != 2)
 	{
-	print_error(info, "unsetenv: Incorrect number of arguments");
+		print_error(info, "unsetenv: Incorrect number of arguments");
 		return (2);
 	}
 	name = info->argv[1];
-		if (unsetenv(name) != 0)
+	if (unsetenv(name) != 0)
 	{
 		return (2);
 	}
@@ -118,9 +118,9 @@ int _my_unsetenv(info_t *info)
 	{
 		if (_strcmp(*environ, name) == 0)
 		{
-		if (bfree((void **)environ) == -1)
+			if (bfree((void **)environ) == -1)
 			{
-		print_error(info, "unsetenv: Memory deallocation failed");
+				print_error(info, "unsetenv: Memory deallocation failed");
 				return (2);
 			}
 			break;
@@ -138,23 +138,22 @@ int _my_unsetenv(info_t *info)
  */
 int populate_env_list(info_t *info)
 {
-	char **environ = environ;
 	list_t *env = NULL;
 	list_t *temp = NULL;
 	int index = 0;
 
-	while (*environ != NULL)
+	while (environ[index] != NULL)
 	{
-		temp = add_node_end(&env, *environ, index);
+		temp = add_node_end(&env, environ[index], index);
 		if (temp == NULL)
 		{
 			free_list(&env);
 			print_error(info, "populate_env_list: Memory allocation failed");
 			return (-1);
 		}
-		environ++;
 		index++;
 	}
+
 	info->env = env;
 	return (0);
 }
