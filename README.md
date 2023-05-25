@@ -1,1 +1,31 @@
-Simle shell program By Caro and joshua
+Simle shell program By Caro and joshu
+_atoi.c
+bin_ls.bash
+builtin.c
+builtin1.c
+checker.bash
+core.130
+env
+environ.c
+errors.c
+errors1.c
+exits.c
+getLine.c
+getenv.c
+getinfo.c
+history.c
+hsh
+lists.c
+lists1.c
+main.c
+main1.c
+memory.c
+parser.c
+realloc.c
+shell.h
+str
+string.c
+string1.c
+tokenizer.c
+vars.c
+shell_loop.c
